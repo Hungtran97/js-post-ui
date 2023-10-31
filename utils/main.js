@@ -3,7 +3,6 @@ import { initPagination, initsearch, renderPagination, renderPostList } from '..
 
 async function handleFilterChange(filterName, filterValue) {
   //update query params
-  console.log('page', document.getElementById('pagination').dataset.page)
   const url = new URL(window.location)
   url.searchParams.set(filterName, filterValue)
 
@@ -29,7 +28,7 @@ async function handleFilterChange(filterName, filterValue) {
     const queryParam = url.searchParams
     const { data, pagination } = await postApi.getAll(queryParam)
     initPagination({
-      elementId: 'paginaton',
+      elementId: 'pagination',
       defaultParams: queryParam,
       onChange: (page) => handleFilterChange('_page', page),
     })
