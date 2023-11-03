@@ -37,8 +37,8 @@ async function handleFilterChange(filterName, filterValue) {
       defaultParams: queryParam,
       onChange: (value) => handleFilterChange('title_like', value),
     })
-    renderPostList(data)
     renderPagination('pagination', pagination)
+    renderPostList(data)
   } catch (error) {
     console.log('get all failed', error)
   }

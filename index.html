@@ -68,6 +68,12 @@
       </li>
     </template>
 
+    <!-- This is a template HTML for a post item -->
+    <template id="pageTemplate">
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+    </template>
+      
+
     <header>
       <!-- Navigation
       - Please note that we use an empty item to make sure that we always have 3 flex-items
@@ -184,9 +190,7 @@
                   <span aria-hidden="true">&laquo;Previous</span>
                 </a>
               </li>
-              <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+              <ul class="page-number px-1 d-flex"></ul>
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next">
                   <span aria-hidden="true">Next&raquo;</span>

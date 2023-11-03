@@ -12,6 +12,9 @@ export function createPostElement(post) {
 
     const liElement = postTemplate.content.firstElementChild.cloneNode(true)
     if (!liElement) return
+    // set id content for post
+    const postContent = liElement.firstElementChild
+    postContent.dataset.idContent = post.id
 
     // update title , description, author, thumnail
     setTextContent(liElement, '[data-id="title"]', post.title)
@@ -46,3 +49,5 @@ export function renderPostList(postList) {
     ulElement.appendChild(liElement)
   })
 }
+
+
