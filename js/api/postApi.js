@@ -6,7 +6,7 @@ const postApi = {
         return axiosClient.get(url, {params})
     },
     getById(id) {
-        const url = `/post/${id}`
+        const url = `/posts/${id}`
         return axiosClient.get(url)
     },
     add(data) {
@@ -14,11 +14,11 @@ const postApi = {
         return axiosClient.get(url, data)
     },
     update(data) {
-        const url = `/post/${data.id}`
+        const url = `/posts/${data.id}`
         return axiosClient.patch(url, data)
     },
     remove(id) {
-        const url = `/post/${id}`
+        const url = `/posts/${id}`
         return axiosClient.delete(url)
     },
 

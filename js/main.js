@@ -26,7 +26,6 @@ async function handleFilterChange(filterName, filterValue) {
       url.searchParams.set('_limit', 6)
     }
     history.pushState({}, '', url)
-    console.log(url.searchParams)
     const queryParam = url.searchParams
     const { data, pagination } = await postApi.getAll(queryParam)
     initPagination({
