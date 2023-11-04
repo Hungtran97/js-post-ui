@@ -1,5 +1,5 @@
-import postApi from '../js/postApi.js'
-import { initPagination, initsearch, renderPagination, renderPostList } from '../utils'
+import postApi from './api/postApi'
+import { initPagination, initsearch, renderPagination, renderPostList } from './utils'
 
 async function handleFilterChange(filterName, filterValue) {
   //update query params
@@ -21,10 +21,12 @@ async function handleFilterChange(filterName, filterValue) {
     const url = new URL(window.location)
 
     //Update search params if needed
-    if (!url.searchParams.get('_page')) url.searchParams.set('_page', 1)
-    if (!url.searchParams.get('_limit')) url.searchParams.set('_limit', 6)
+    if (!url.search) {
+      url.searchParams.set('_page', 1)
+      url.searchParams.set('_limit', 6)
+    }
     history.pushState({}, '', url)
-
+    console.log(url.searchParams)
     const queryParam = url.searchParams
     const { data, pagination } = await postApi.getAll(queryParam)
     initPagination({
