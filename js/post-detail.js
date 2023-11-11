@@ -1,23 +1,16 @@
 import dayjs from 'dayjs'
 import postApi from './api/postApi'
-import { setTextContent } from './utils'
+import { setTextContent, registerLightbox } from './utils'
 
-// id = 'goToEditPageLink'
-// id = 'postHeroImage'
-// id = 'postDetailTitle'
-// id = 'postDetailAuthor'
-// id = 'postDetailTimeSpan'
-// id = 'postDetailDescription'
-
-// author: 'Elaina Wisozk'
-// createdAt: 1692522078272
-// description: 'magnam ipsa sed unde qui et esse est omnis ut id est adipisci quae odio qui omnis mollitia dolores rerum molestiae illo provident et beatae consequatur aut cum deserunt sit saepe est quibusdam quasi ea fuga veniam ut nobis vel accusamus quos voluptatibus dolor sunt animi praesentium aut adipisci id'
-// id: 'lea319jollj7y1q8'
-// imageUrl: 'https://picsum.photos/id/805/1368/400'
-// title: 'Repudiandae doloribus'
-// updatedAt: 1692522078272
 function createPost(post) {
   if (!post) return
+
+  registerLightbox({
+    modalId: 'lightbox',
+    imgSelector: 'img[data-id="lightboxImg"]',
+    prevSelector: 'button[data-id="prevLightboxImg"]',
+    nextSelector: 'button[data-id="nextLightboxImg"]',
+  })
   
   const heroImage = document.querySelector('#postHeroImage')
   if (heroImage) {
@@ -40,7 +33,6 @@ function createPost(post) {
   try {
     const searchParam = new URLSearchParams(window.location.search)
     const postId = searchParam.get('id')
-    console.log(postId)
     if (!postId) return
     const post = await postApi.getById(postId)
     createPost(post)
