@@ -11,7 +11,7 @@ const postApi = {
     },
     add(data) {
         const url = '/posts'
-        return axiosClient.get(url, data)
+        return axiosClient.post(url, data)
     },
     update(data) {
         const url = `/posts/${data.id}`

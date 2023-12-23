@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import postApi from './api/postApi'
-import { setTextContent, registerLightbox } from './utils'
+import { setTextContent, registerLightbox, upadateBackgroundImageUrl } from './utils'
 
 function createPost(post) {
   if (!post) return
@@ -11,17 +11,15 @@ function createPost(post) {
     prevSelector: 'button[data-id="prevLightboxImg"]',
     nextSelector: 'button[data-id="nextLightboxImg"]',
   })
-  
-  const heroImage = document.querySelector('#postHeroImage')
-  if (heroImage) {
-    heroImage.style.backgroundImage = `url(${post.imageUrl})`
-    heroImage.addEventListener('error', () => {
-      heroImage.style.backgroundImage = 'https://dummyimage.com/1368x400/000/9b9e9e.jpg&text=thumbnail'
-    })
-  }
+
+  upadateBackgroundImageUrl('postHeroImage', post.imageUrl)
   setTextContent(document, '#postDetailTitle', post.title)
   setTextContent(document, '#postDetailAuthor', post.author)
-  setTextContent(document, '#postDetailTimeSpan', dayjs(post.createdAt).format(' - DD/MM/YYYY HH:mm'))
+  setTextContent(
+    document,
+    '#postDetailTimeSpan',
+    dayjs(post.updatedAt).format(' - DD/MM/YYYY HH:mm')
+  )
   setTextContent(document, '#postDetailDescription', post.description)
 
   const editPageLink = document.getElementById('goToEditPageLink')

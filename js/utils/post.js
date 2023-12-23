@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime.js'
 import { setTextContent, truncateText } from '.'
+import postApi from '../api/postApi'
 
 // extend relatime
 dayjs.extend(relativeTime)
@@ -34,11 +35,30 @@ export function createPostElement(post) {
     //Attach event
     // Go post detail when click div.post-item
     const divElement = liElement.firstElementChild
+    const menu = divElement.querySelector(`[data-id="menu"]`)
     if (divElement) {
-      divElement.addEventListener('click', () => {
+      divElement.addEventListener('click', (e) => {
+        if (menu && menu.contains(e.target)) return
         window.location.assign(`/post-detail.html?id=${post.id}`)
       })
     }
+    const editPost = divElement.querySelector(`[data-id="edit"]`)
+    if (editPost) {
+      editPost.addEventListener('click', () => {
+        window.location.assign(`/add-edit-post.html?id=${post.id}`)
+      })
+    }
+    const deletePost = divElement.querySelector(`[data-id="remove"]`)
+    if (deletePost) {
+      deletePost.addEventListener('click', (e) => {
+        //   try {
+        //     const postRemove = postApi.remove(post.id)
+        //   } catch (error) {
+        //     console.log('faile to remove post', error);
+        //   }
+      })
+    }
+
     return liElement
   } catch (error) {
     console.log('faile to create post', error)
